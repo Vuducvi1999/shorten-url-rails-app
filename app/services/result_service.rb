@@ -1,9 +1,10 @@
 class ResultService
-  attr_reader :payload, :errors
+  attr_reader :payload, :errors, :status
 
-  def initialize(payload: nil, errors: {})
+  def initialize(payload: nil, errors: {}, status: :ok)
     @payload = payload
     @errors = errors
+    @status = status
   end
 
   def fail?

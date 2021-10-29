@@ -1,8 +1,17 @@
 class ShortenUrl < ApplicationRecord
   belongs_to :user
 
-  validates :origin, :link, presence: true
-  validates :origin, url: true
+  validates :alias, uniqueness: true
+  validates :origin, url: true, presence: true
 
-  after_initialize {|url| url.clicked = 0 }
+  before_save :adjust_attr
+  
+  private
+
+  def adjust_attr
+    self.clicked = 0
+    self.alias = SecureRandom.base58 7
+    url_parse = URI.parse self.origin
+    self.origin = "http://#{self.origin}" unless url_parse.scheme
+  end
 end

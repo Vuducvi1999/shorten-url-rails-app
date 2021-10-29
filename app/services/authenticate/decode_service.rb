@@ -1,3 +1,8 @@
+
+# input: request.headers
+# output: token string if sign in success
+#         errors if sign in fail
+
 class Authenticate::DecodeService < BaseService
   def initialize(header = {})
     @header = header
@@ -6,8 +11,8 @@ class Authenticate::DecodeService < BaseService
   end
 
   def call
-    return ResultService.new payload: @payload if token_valid?
-    ResultService.new errors: @errors
+    return ResultService.new errors: @errors, status: :unauthorized unless token_valid?
+    ResultService.new payload: @payload, status: :accepted
   end
 
   private

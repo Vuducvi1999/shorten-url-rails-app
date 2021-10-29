@@ -1,3 +1,8 @@
 
-json.token @service_sign_up.payload if @service_sign_up.success?
-json.errors @service_sign_up.errors if @service_sign_up.fail?
+if @result_service.success?
+  json.data do
+    json.token @result_service.payload 
+  end
+end
+
+json.errors @result_service.errors if @result_service.fail?

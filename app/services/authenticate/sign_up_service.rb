@@ -1,7 +1,8 @@
 
 # input: {name, email, password}
 # output: a jwt token if valid
-#         errors if invalid, errors: {name: ['cant be blank'], email: ['has already exist'], ...}
+#         errors messages if invalid
+#         errors: {name: ['cant be blank'], email: ['has already exist'], ...}
 
 class Authenticate::SignUpService < BaseService
   def initialize params
@@ -9,11 +10,11 @@ class Authenticate::SignUpService < BaseService
   end
 
   def call
-    if @user.errors
-      ResultService.new errors: @user.errors.messages
+    if @user.errors.messages.any?
+      ResultService.new errors: @user.errors.messages, status: :forbidden
     else
       jwt = JWT.encode(payload, Rails.application.secrets.secret_key_base)
-      ResultService.new payload: jwt
+      ResultService.new payload: jwt, status: :created
     end
   end
 

@@ -7,6 +7,6 @@ class User < ApplicationRecord
   validates :email, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   after_initialize do |user|
-    user.access_key = SecureRandom.base58 24
+    user.access_key = SecureRandom.base58(8)
   end
 end
