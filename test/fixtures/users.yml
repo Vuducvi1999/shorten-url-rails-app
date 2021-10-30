@@ -4,10 +4,10 @@ one:
   name: MyString
   email: MyString
   pasword_digest: MyString
-  access_key: 
+  access_api:
 
 two:
   name: MyString
   email: MyString
   pasword_digest: MyString
-  access_key: 
+  access_api:

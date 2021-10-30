@@ -52,5 +52,5 @@ en:
               invalid: "invalid email"
             password:
               blank: "missing password"
-            access_key:
+            access_api:
               blank: "missing access key"

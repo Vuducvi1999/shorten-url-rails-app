@@ -1,4 +1,4 @@
-module ShortenUrlHelper
+module ApplicationHelper
   include Rails.application.routes.url_helpers
 
   def shorten_url data

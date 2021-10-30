@@ -8,7 +8,7 @@ if payload.present?
     json.shorten_url shorten_url payload
     json.clicked payload.clicked
     json.user do 
-      json.(payload.user, :name, :email, :access_key)
+      json.(payload.user, :name, :email, :access_api)
     end
   end
 end

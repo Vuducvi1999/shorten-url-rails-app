@@ -5,7 +5,7 @@ class ApplicationController < ActionController::API
   private
 
   def test 
-    # a= ShortenUrl::DirectService.call shorten_url: 'http://localhost:3000/'
+    # a = Management::ListLinksService.call access_api: 'VNDMm9pB', page: params[:page]
     # byebug
   end
 
@@ -19,6 +19,6 @@ class ApplicationController < ActionController::API
 
   def current_user
     user_id = decoded.payload.first['user_id']
-    User.find_by id: user_id
+    @current_user ||= User.find_by(id: user_id)
   end
 end
