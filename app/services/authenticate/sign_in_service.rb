@@ -13,7 +13,7 @@ class Authenticate::SignInService < BaseService
     return ResultService.new errors: errors, status: :forbidden if user.nil?
     
     jwt = JWT.encode(payload, Rails.application.secrets.secret_key_base)
-    ResultService.new payload: jwt, status: :ok
+    ResultService.new payload: jwt
   end
 
   private

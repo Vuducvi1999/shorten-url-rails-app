@@ -1,7 +1,9 @@
 class ManagementController < ApplicationController
   include Statusable
-  skip_before_action :authenticate!, only: [:links]
-  before_action :check_access_api!, only: [:links]
+  include Accessable
+
+  skip_before_action :authenticate!, except: %i[access_api]
+  before_action :check_access!, except: %i[access_api]
 
   def access_api 
     @user = current_user
@@ -16,22 +18,22 @@ class ManagementController < ApplicationController
     render :links, status: status
   end
 
-  private
-
-  def check_access_api!
-    user = user_from_access_api
-    render json: invalid_access_api if user.nil?
+  def detail
+    @result_service = Management::DetailService.call alias_path: params[:alias]
+    render :detail, status: status
   end
 
-  def user_from_access_api
-    @user ||= User.includes(:shorten_urls).find_by access_api: params[:access_api]
+  def edit 
+    # byebug
+    @result_service = Management::EditService.call(
+      alias_path: params[:alias],
+      origin_changed: params[:origin_changed]
+    )
+    render :edit, status: status
   end
 
-  def invalid_access_api
-    {
-      errors: {
-        messages: ['invalid access api']
-      }
-    }
+  def destroy 
+    @result_service = Management::DestroyService.call alias_path: params[:alias]
+    render :destroy, status: status
   end
 end

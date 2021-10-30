@@ -4,7 +4,7 @@ class ShortenUrl < ApplicationRecord
   validates :alias, uniqueness: true
   validates :origin, url: true, presence: true
 
-  before_save :adjust_attr
+  before_create :adjust_attr
   
   private
 

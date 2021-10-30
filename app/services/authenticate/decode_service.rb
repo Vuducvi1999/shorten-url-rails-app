@@ -4,8 +4,8 @@
 #         errors if sign in fail
 
 class Authenticate::DecodeService < BaseService
-  def initialize(header = {})
-    @header = header
+  def initialize headers:{}
+    @headers = headers
     @errors = {}
     @payload = nil
   end
@@ -18,7 +18,7 @@ class Authenticate::DecodeService < BaseService
   private
 
   def token
-    @header[:Authorization].split(' ').last if @header[:Authorization]
+    @headers[:Authorization].split(' ').last if @headers[:Authorization]
   end
 
   def token_valid?

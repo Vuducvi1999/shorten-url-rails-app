@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   
   get 'access-api' => 'management#access_api'
   get 'links' => 'management#links'
+  get 'detail/:alias' => 'management#detail'
+  post 'destroy/:alias' => 'management#destroy'
+  post 'edit/:alias' => 'management#edit'
   
   get ':alias' => 'shorten_url#direct'
 end

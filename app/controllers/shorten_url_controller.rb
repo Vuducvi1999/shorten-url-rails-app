@@ -1,6 +1,9 @@
 class ShortenUrlController < ApplicationController
   include Statusable
-  skip_before_action :authenticate!, only: [:direct]
+  include Accessable
+  
+  skip_before_action :authenticate!
+  before_action :check_access!, only: %i[compress]
 
   def compress
     @result_service = ShortenUrl::CompressService.call(
@@ -12,7 +15,6 @@ class ShortenUrlController < ApplicationController
 
   def direct
     @result_service = ShortenUrl::DirectService.call shorten_url: request.url 
-    redirect_to 'http://google.com' if @result_service.success?
-    # render :direct, status: status
-  end    
+    redirect_to @result_service.payload.origin if @result_service.success?
+  end  
 end

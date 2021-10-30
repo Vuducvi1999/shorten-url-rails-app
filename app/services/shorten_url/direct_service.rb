@@ -5,6 +5,7 @@
 
 class ShortenUrl::DirectService < BaseService
   include Rails.application.routes.url_helpers
+  include Entityable
 
   def initialize shorten_url:''
     @shorten_url = shorten_url
@@ -12,7 +13,7 @@ class ShortenUrl::DirectService < BaseService
 
   def call
     return ResultService.new errors:errors, status: :unprocessable_entity if record.nil?
-    ResultService.new payload:record, status: :ok
+    ResultService.new payload:record_incremented
   end
 
   private
@@ -25,9 +26,7 @@ class ShortenUrl::DirectService < BaseService
     @record ||= ShortenUrl.find_by alias:alias_path
   end
 
-  def errors
-    {
-      messages:[ 'entity not found' ]
-    }
+  def record_incremented
+    @record.try :increment!, :clicked
   end
 end

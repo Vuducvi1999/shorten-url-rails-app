@@ -16,7 +16,7 @@ class Management::ListLinksService < BaseService
       all_links, 
       total_items, 
       total_pages
-    ), status: :ok
+    )
   end
 
   private
