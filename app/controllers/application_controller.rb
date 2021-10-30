@@ -9,7 +9,7 @@ class ApplicationController < ActionController::API
   end
 
   def authenticate!
-    render json: decoded.errors, status: :unauthorized if decoded.fail?
+    render json: decoded.errors, status: :ok if decoded.fail?
   end
 
   def current_user

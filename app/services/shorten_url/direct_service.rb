@@ -12,7 +12,7 @@ class ShortenUrl::DirectService < BaseService
   end
 
   def call
-    return ResultService.new errors:errors, status: :unprocessable_entity if record.nil?
+    return ResultService.new errors:errors if record.nil?
     ResultService.new payload:record_incremented
   end
 

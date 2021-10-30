@@ -11,7 +11,7 @@ class Authenticate::DecodeService < BaseService
   end
 
   def call
-    return ResultService.new errors: @errors, status: :unauthorized unless token_valid?
+    return ResultService.new errors: @errors unless token_valid?
     ResultService.new payload: @payload, status: :accepted
   end
 

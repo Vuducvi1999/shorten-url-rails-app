@@ -18,7 +18,7 @@ class Management::DestroyService < BaseService
   end
 
   def call
-    return ResultService.new errors: errors, status: :unprocessable_entity if record.nil?
+    return ResultService.new errors: errors if record.nil?
     ResultService.new payload: data 
   end
 

@@ -18,8 +18,8 @@ class Management::EditService < BaseService
   end
 
   def call 
-    return ResultService.new errors: not_found_error, status: :unprocessable_entity if record.nil? 
-    return ResultService.new errors: validate_error, status: :bad_request if origin_invalid?
+    return ResultService.new errors: not_found_error if record.nil? 
+    return ResultService.new errors: validate_error if origin_invalid?
     ResultService.new payload: data
   end
 

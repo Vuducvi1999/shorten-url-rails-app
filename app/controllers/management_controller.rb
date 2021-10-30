@@ -24,7 +24,6 @@ class ManagementController < ApplicationController
   end
 
   def edit 
-    # byebug
     @result_service = Management::EditService.call(
       alias_path: params[:alias],
       origin_changed: params[:origin_changed]

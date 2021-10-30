@@ -12,7 +12,7 @@ class ShortenUrl::CompressService < BaseService
 
   def call
     errors_messages = shorten_url.errors.messages
-    return ResultService.new errors: errors_messages, status: :forbidden if errors_messages.any?
+    return ResultService.new errors: errors_messages if errors_messages.any?
     ResultService.new payload: shorten_url, status: :created
   end
 
