@@ -1,0 +1,10 @@
+
+
+
+
+
+
+- aware Rails.application.default_url_options is 'http://localhost:3000'
+  if you change your localhost port, please update default_url_options for redirect success
+  Ex: open with command rails server -p 4000
+      => default_url_options must be 'http://localhost:4000'
