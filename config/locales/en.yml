@@ -30,4 +30,27 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    errors:
+      models:
+        shorten_url:
+          attributes:
+            user:
+              required: "missing user"
+            alias:
+              taken: "alias has been taken, try again"
+              blank: "missing alias"
+            origin:
+              blank: "missing origin url"
+        user:
+          attributes:
+            name:
+              blank: "missing name"
+            email:
+              blank: "missing email"
+              taken: "email has been taken, try again"
+              invalid: "invalid email"
+            password:
+              blank: "missing password"
+            access_api:
+              blank: "missing access key"
