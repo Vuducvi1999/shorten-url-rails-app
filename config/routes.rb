@@ -15,8 +15,8 @@ Rails.application.routes.draw do
     get 'access-api' => 'management#access_api'     # authorized!
     get 'links' => 'management#links'               # check_access!
     get 'detail/:alias' => 'management#detail'      # check_access!
-    post 'destroy/:alias' => 'management#destroy'   # check_access!
-    post 'edit/:alias' => 'management#edit'         # check_access!
+    delete 'destroy/:alias' => 'management#destroy'   # check_access!
+    patch 'edit/:alias' => 'management#edit'         # check_access!
     
     get ':alias' => 'shorten_url#direct'            # public
   end
