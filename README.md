@@ -132,7 +132,7 @@ Step 1: if your server port is different than 3000 (like 3001). We have mentione
 
 We need to change server port config at client.
 
-Go to `src/constants` and change
+Go to `src/constants/index.js` and change
 
 `export const root_server = 'http://localhost:3000'`
 
