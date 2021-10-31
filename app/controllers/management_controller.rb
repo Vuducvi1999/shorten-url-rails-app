@@ -12,7 +12,7 @@ class ManagementController < ApplicationController
 
   def links 
     @result_service = Management::ListLinksService.call(
-      user: @user, 
+      user: current_user, 
       page: params[:page]
     )
     render :links, status: status

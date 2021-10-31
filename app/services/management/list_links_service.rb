@@ -12,6 +12,7 @@ class Management::ListLinksService < BaseService
 
   def call
     return ResultService.new unless @user 
+    # byebug
     ResultService.new payload: content_payload.new(
       all_links, 
       total_items, 

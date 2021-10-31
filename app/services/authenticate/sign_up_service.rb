@@ -14,7 +14,10 @@ class Authenticate::SignUpService < BaseService
       ResultService.new errors: @user.errors.messages
     else
       jwt = JWT.encode(payload, Rails.application.secrets.secret_key_base)
-      ResultService.new payload: jwt, status: :created
+      ResultService.new payload: {
+        user: @user,
+        jwt: jwt
+      }, status: :created
     end
   end
 

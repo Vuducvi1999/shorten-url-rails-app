@@ -15,7 +15,7 @@ class ApplicationController < ActionController::API
   def current_user
     if decoded.success?
       user_id = decoded.payload.first['user_id'] 
-      @current_user ||= User.find_by(id: user_id)
+      return @current_user ||= User.find_by(id: user_id)
     end
     @current_user ||= User.find_by access_api: params[:access_api] 
   rescue 
